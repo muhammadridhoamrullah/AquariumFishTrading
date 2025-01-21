@@ -14,13 +14,50 @@ module.exports = (sequelize, DataTypes) => {
   }
   FishCare.init(
     {
-      MyFishId: DataTypes.INTEGER,
-      temperature: DataTypes.FLOAT,
-      pH: DataTypes.FLOAT,
-      medication: DataTypes.STRING,
-      feeding: DataTypes.STRING,
-      behavior: DataTypes.STRING,
-      checkUpDate: DataTypes.DATE,
+      MyFishId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "My Fish Id is required",
+          },
+          notEmpty: {
+            msg: "My Fish Id is required",
+          },
+        },
+      },
+      temperature: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
+      },
+      pH: {
+        type: DataTypes.FLOAT,
+        allowNull: true,
+      },
+      medication: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      feeding: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      behavior: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      checkUpDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Check Up Date is required",
+          },
+          notEmpty: {
+            msg: "Check Up Date is required",
+          },
+        },
+      },
     },
     {
       sequelize,

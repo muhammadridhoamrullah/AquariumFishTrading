@@ -1,0 +1,18 @@
+[
+  {
+    "UserId": 3,
+    "FishId": 1,
+    "status": "Healthy",
+    "purchaseDate": "2024-01-15",
+    "lastCheckUp": "2024-01-20",
+    "notes": "New addition to collection, excellent condition"
+  },
+  {
+    "UserId": 3,
+    "FishId": 2,
+    "status": "Breeding",
+    "purchaseDate": "2024-01-10",
+    "lastCheckUp": "2024-01-18",
+    "notes": "Preparing for breeding program"
+  }
+]

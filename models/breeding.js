@@ -14,12 +14,46 @@ module.exports = (sequelize, DataTypes) => {
   }
   Breeding.init(
     {
-      MyFishId: DataTypes.INTEGER,
-      startDate: DataTypes.DATE,
-      expectedDate: DataTypes.DATE,
-      success: DataTypes.BOOLEAN,
-      offSpringCount: DataTypes.INTEGER,
-      notes: DataTypes.STRING,
+      MyFishId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "My Fish Id is required",
+          },
+          notEmpty: {
+            msg: "My Fish Id is required",
+          },
+        },
+      },
+      startDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notNull: {
+            msg: "Start Date is required",
+          },
+          notEmpty: {
+            msg: "Start Date is required",
+          },
+        },
+      },
+      expectedDate: {
+        type: DataTypes.DATE,
+        allowNull: true,
+      },
+      success: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
+      offSpringCount: {
+        type: DataTypes.INTEGER,
+        allowNull: true,
+      },
+      notes: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     },
     {
       sequelize,

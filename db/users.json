@@ -1,0 +1,33 @@
+[
+  {
+    "email": "ridhoamrullah99@gmail.com",
+    "password": "1234567890",
+    "role": "Breeder",
+    "storeName": "Premium Fish Emporium",
+    "location": "Jakarta",
+    "rating": 4.7
+  },
+  {
+    "email": "kimminji@gmail.com",
+    "password": "1234567890",
+    "role": "Expert",
+    "storeName": "Fish Health Consultants",
+    "location": "Bali",
+    "rating": 4.9
+  },
+  {
+    "email": "oliviarodrigo@gmail.com",
+    "password": "1234567890",
+    "role": "User",
+    "location": "Surabaya",
+    "rating": 0
+  },
+  {
+    "email": "admin@gmail.com",
+    "password": "hashedAdminPassword",
+    "role": "Admin",
+    "location": "Jakarta",
+    "rating": 0,
+    "storeName": "AquaTrade Admin"
+  }
+]

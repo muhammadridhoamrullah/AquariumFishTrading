@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Blue Dragon Arowana",
+    "species": "Arowana",
+    "variant": "Super Red",
+    "age": 24,
+    "size": 45.5,
+    "grade": "A",
+    "imageUrl": "https://blue.kumparan.com/image/upload/fl_progressive,fl_lossy,c_fill,q_auto:best,w_640/v1484639209/ke8yevx7w2s4pbrutqbk.jpg",
+    "videoUrl": "https://example.com/arowana1.mp4",
+    "price": 25000000,
+    "description": "Exceptional quality Super Red Arowana with championship lineage",
+    "origin": "Indonesia",
+    "gender": "Male",
+    "certificate": "World Champion 2023",
+    "UserId": 1
+  },
+  {
+    "name": "Galaxy Koi Betta",
+    "species": "Betta",
+    "variant": "Halfmoon",
+    "age": 6,
+    "size": 5.2,
+    "grade": "A+",
+    "imageUrl": "https://www.bettasplendid.com/wp-content/uploads/2017/09/Galaxy-Koi-HMPK-01-1.jpg",
+    "price": 1200000,
+    "description": "Stunning Halfmoon Betta with unique galaxy-like coloration",
+    "origin": "Thailand",
+    "gender": "Male",
+    "UserId": 1
+  }
+]
