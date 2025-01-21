@@ -1,43 +1,6 @@
 # AquaTrade API Documentation
 
-Saya telah membuat API Documentation untuk Aquarium Fish Trading Platform dengan banyak fitur unik:
 
-Multiple User Roles:
-
-Regular user
-Breeder (peternak)
-Expert (untuk konsultasi)
-Admin
-
-
-Detailed Fish Management:
-
-Spesifikasi detail ikan (size, grade, variant)
-Tracking kesehatan
-Sertifikasi untuk ikan kontes
-Breeding system
-
-
-Fish Care System:
-
-Monitoring parameter air
-Tracking kesehatan
-Jadwal feeding
-Medical record
-
-
-Breeding Management:
-
-Program breeding
-Tracking hasil
-Dokumentasi proses
-
-
-Expert System:
-
-Verifikasi ikan
-Konsultasi kesehatan
-Sertifikasi grade
 
 ## Models
 
