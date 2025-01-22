@@ -31,6 +31,15 @@ async function errorHandling(err, req, res, next) {
     res.status(400).json({ message: "Status is required" });
   } else if (err.name === "CHECKUP_DATE_REQUIRED") {
     res.status(400).json({ message: "Check Up Date is required" });
+  } else if (err.name === "START_DATE_REQUIRED") {
+    res.status(400).json({ message: "Start Date is required" });
+  } else if (err.name === "REQUIRED_FIELDS") {
+    res
+      .status(400)
+      .json({
+        message:
+          "Name, Species, Variant, Age, Size, Grade, Image URL, Price, Origin is required",
+      });
   }
 }
 

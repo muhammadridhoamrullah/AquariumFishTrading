@@ -409,6 +409,293 @@ class Controller {
       next(error);
     }
   }
+
+  static async addMyFishToBreeding(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const { startDate, expectedDate, success, offSpringCount, notes } =
+        req.body;
+
+      if (!startDate) {
+        throw { name: "START_DATE_REQUIRED" };
+      }
+
+      const findMyFish = await MyFish.findByPk(id, {
+        include: [
+          {
+            model: User,
+            attributes: {
+              exclude: ["password"],
+            },
+          },
+          {
+            model: Fish,
+          },
+        ],
+      });
+
+      if (!findMyFish) {
+        throw { name: "DATA_NOT_FOUND" };
+      }
+
+      const addingBreeding = await Breeding.create({
+        MyFishId: id,
+        startDate,
+        expectedDate,
+        success,
+        offSpringCount,
+        notes,
+      });
+
+      res.status(201).json({
+        message: "Successfully added to Breeding",
+        data: addingBreeding,
+      });
+    } catch (error) {
+      console.log(error, "ini error addMYfISHTOBREEDING");
+
+      next(error);
+    }
+  }
+
+  static async getBreedingHistory(req, res, next) {
+    try {
+      const breedingHistory = await Breeding.findAll({
+        include: {
+          model: MyFish,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: ["password"],
+              },
+            },
+            {
+              model: Fish,
+            },
+          ],
+        },
+      });
+      res.status(200).json(breedingHistory);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async updateBreeding(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const { success, offSpringCount, notes } = req.body;
+
+      const findBreeding = await Breeding.findByPk(id, {
+        include: {
+          model: MyFish,
+          include: [
+            {
+              model: User,
+              attributes: {
+                exclude: ["password"],
+              },
+            },
+            {
+              model: Fish,
+            },
+          ],
+        },
+      });
+
+      if (!findBreeding) {
+        throw { name: "DATA_NOT_FOUND" };
+      }
+      console.log(findBreeding, "ini  findbreeding");
+
+      console.log(findBreeding.MyFish?.User?.id, "ini hasil findbreeding");
+      console.log(req.user.id, "ini hasil req.user.id");
+
+      if (findBreeding.MyFish?.User?.id !== req.user.id) {
+        throw { name: "FORBIDDEN" };
+      }
+
+      const updatedBreeding = await Breeding.update(
+        {
+          success,
+          offSpringCount,
+          notes,
+          updatedAt: new Date(),
+        },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+
+      res.status(200).json({
+        message: "Successfully updated breeding",
+        data: updatedBreeding,
+      });
+    } catch (error) {
+      console.log(error, "ini error updateBreeding");
+
+      next(error);
+    }
+  }
+
+  static async addFish(req, res, next) {
+    try {
+      const {
+        name,
+        species,
+        variant,
+        age,
+        size,
+        grade,
+        imageUrl,
+        videoUrl,
+        price,
+        description,
+        origin,
+        gender,
+        certificate,
+      } = req.body;
+
+      if (
+        !name ||
+        !species ||
+        !variant ||
+        !age ||
+        !size ||
+        !grade ||
+        !imageUrl ||
+        !price ||
+        !origin
+      ) {
+        throw { name: "REQUIRED_FIELDS" };
+      }
+
+      const addingFish = await Fish.create({
+        name,
+        species,
+        variant,
+        age,
+        size,
+        grade,
+        imageUrl,
+        videoUrl,
+        price,
+        description,
+        origin,
+        certificate,
+        gender,
+        UserId: req.user.id,
+      });
+
+      res.status(201).json({
+        message: "Successfully added fish",
+        data: addingFish,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async updateFish(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const {
+        name,
+        species,
+        variant,
+        age,
+        size,
+        grade,
+        imageUrl,
+        videoUrl,
+        price,
+        description,
+        origin,
+        gender,
+        certificate,
+      } = req.body;
+
+      const findFish = await Fish.findByPk(id, {
+        include: {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+      });
+
+      if (!findFish) {
+        throw { name: "DATA_NOT_FOUND" };
+      }
+
+      const updatedFish = await Fish.update(
+        {
+          name,
+          species,
+          variant,
+          age,
+          size,
+          grade,
+          imageUrl,
+          videoUrl,
+          price,
+          description,
+          origin,
+          updatedAt: new Date(),
+        },
+        {
+          where: {
+            id,
+          },
+        }
+      );
+
+      res.status(200).json({
+        message: "Successfully updated",
+        data: updatedFish,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  static async deleteFish(req, res, next) {
+    try {
+      const { id } = req.params;
+
+      const findFish = await Fish.findByPk(id, {
+        include: {
+          model: User,
+          attributes: {
+            exclude: ["password"],
+          },
+        },
+      });
+
+      if (!findFish) {
+        throw { name: "DATA_NOT_FOUND" };
+      }
+
+      const deletedFish = await Fish.destroy({
+        where: {
+          id,
+        },
+      });
+
+      res.status(200).json({
+        message: "Successfully deleted",
+        data: deletedFish,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 module.exports = {
